@@ -77,5 +77,5 @@ def RandomRecipePage():
         RecipesList = [Row] + RecipesList
         print (RecipesList)
 
-
+RandomRecipePage()
 
