@@ -8,11 +8,11 @@ import psycopg2 , random, json
 from flask_restful import Api, Resource, reqparse
 
 app = Flask(__name__)
-
-RandomRecipe = RandomRecipePage()
-@app.route("/RandomRecipeLink")
-def RandomRecipeGenrator():
-    return jsonify(RandomRecipe)
+def RecipesGenrator():
+    RandomRecipe = RandomRecipePage()
+    @app.route("/RandomRecipeLink")
+    def RandomRecipeGenrator():
+        return jsonify(RandomRecipe)
 
 
 CakesData = DataAccessForHomePage() 
@@ -36,7 +36,7 @@ def process_cart():
 def user(usr):
     return f"<p> {usr} </p>"
 
-
+RecipesGenrator()
 @app.route("/MyStack")
 def stack():
     StackData=stackdata()
@@ -59,4 +59,3 @@ if __name__ == "__main__":
 
 #insertDAL()
 #StackData()
-

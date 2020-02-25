@@ -75,7 +75,8 @@ def RandomRecipePage():
     RecipesList = []
     for Row in Rows:
         RecipesList = [Row] + RecipesList
-    return (RecipesList)
-
+    random.shuffle(RecipesList)
+    print (RecipesList[0])
+    return (RecipesList[0])
 
 
