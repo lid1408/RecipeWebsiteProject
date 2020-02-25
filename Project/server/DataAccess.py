@@ -1,6 +1,7 @@
 
 from flask import Flask, jsonify,json
 import psycopg2
+import random
 
 def DataAccessForHomePage():
     conn = psycopg2.connect(user="lidor",
@@ -60,6 +61,21 @@ def stackdata():
     print (FirstProduct, SecondProduct, ThirdProduct, FourthProduct)
     return (FirstProduct, SecondProduct, ThirdProduct, FourthProduct)
     conn.commit()
+
+def RandomRecipePage():
+        conn = psycopg2.connect(user="lidor",
+                            password="lidor1408",
+                            host="localhost",
+                            port="5431",
+                            database="lidor")
+    cur = conn.cursor()
+    postgreSQL_select_STACK_Query = ("select * from RandomRecipe")
+    cur.execute(postgreSQL_select_STACK_Query)
+    Rows = cur.fetchall()
+    RecipesList = []
+    for Row in Rows:
+        RecipesList = [Row] + RecipesList
+        print (RecipesList)
 
 
 
