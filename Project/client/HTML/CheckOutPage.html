@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<head>
+<title> cartry </title>
+<link rel="stylesheet" type="text/css" href="../CSS/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body onload="updatedstack()">
+<br><br>
+
+    <div class="header">
+        <h2><i>Baking website and Desserts store</i></h2>
+            <div class="description">
+                <h1> MYFIRSTBAKERY Welcomes You Into Our New Website </h1><br>
+                <h class="font-weight-bold" style ="text-align:center";> In my website you can find recipes for familiar desserts, that are also for sale<br>
+                Each price is listed below the product's Recipe.<br>
+                In any troubles\problems please contact me :) <br>
+                pre-ordering must occer a week ahead </h>
+                <h4 style ="text-align:center"> Enjoy! </h4>
+                    <div class="navbar">
+                        <a href="http://127.0.0.1:5500/client/HTML/HomePage.html">  Home </a>
+                        <a href="file:///Users/lidor/client/HTML/AboutMe.html" target=_blank>  About Us </a>
+                        <a href="http://127.0.0.1:5500/client/HTML/contact.html">  Contact     </a>
+                        <a href="http://127.0.0.1:5500/client/HTML/CheckOutPage.html"> Order From us</a>
+                        <a href="http://127.0.0.1:5500/client/HTML/RandomPage.html" target="_blank"> RECIPE of the week </a>
+                    </div>     
+                    <br>
+
+<table id='list'>
+    <tr id= 0 >
+        <th> item type </th>
+        <th> price </th>
+        <th> AMOUNT </th>
+        <th> Description </th>
+        <th> add to cart </th>
+        <th> in stack </th>
+        
+    </tr>
+    <tr>
+        <th id=1 > </th>
+        <th id = 2 > 20 </th>
+        <th> <input type="number" id = 3 name = "CCAmount"> </th>
+        <th> price per 6 cupcakes </th>
+        <th> <button onclick='GeneralFuncForCartPage(1)'> ADD TO CART </button> </th>
+        <th id = 4> </th>
+    </tr>
+    
+    <tr>
+            <th id=5 ></th>
+            <th id = 6 > 7 </th>
+            <th > <input type="number" id = 7 name = "CCAmount"> </th>
+            <th> price per package </th>
+            <th> <button onclick='GeneralFuncForCartPage(5)'> ADD TO CART </button> </th>
+            <th id=8> </th>
+    </tr>
+    
+    <tr>
+            <th id=9 > </th>
+            <th id =10 > 25 </th>
+            <th > <input type="number" id = 11 name = "MCAmount" > </th>
+            <th> price per box </th>
+            <th> <button onclick="GeneralFuncForCartPage(9)"> ADD TO CART </button> </th>
+            <th id=12> </th>
+    </tr>
+
+    <tr>
+            <th id=13 > </th>
+            <th id =14 > 12 </th>
+            <th > <input type="number" id = 15 name="DAmount"> </th>
+            <th> price per box </th>
+            <th> <button onclick='GeneralFuncForCartPage(13)'> ADD TO CART </button> </th>
+            <th id=16> </th>
+    </tr>
+</table>
+
+<p class='cart'>  Your Cart: <br> <idp id='MyCart'> <br></idp> </p>
+<input type="submit" value="Continue to checkout" class="btn" onclick='operator()'> <br>
+<form action="http://localhost:5000/process_cart" method="post" >
+<div name ='panel' id = 'panel' class = 'Billing'>
+    <h> Billing Address</h>
+        <p hidden > <input name="id" id ='id'> </p>
+        <p>Full Name (like on your payment card) : </p> <input type='text' name='fullname' id='fname' value="John Rodrick" required> <br>
+        <p>Email: </p> <input type ='email' name = 'Email' id='mail' value="john@example.com" pattern="(?=.*\s)+@.{10,}" required> <br>
+        <br>
+        <h><b>Address:</b><br><br></h>
+            <p><br><br>Country:<br></p><input type= 'text' name = 'Country' id='country' value="Israel" required> <br>
+            <p>City:</p> <input type= 'text' name ='City' id='City' value="Yehud" required> <br>
+            <p>Street:</p> <input type= 'text' name = 'Street' id='Street' value="542 W. 15th Street" required> <br>
+    <h> Payment </h> <br>
+    <label for="fname">Accepted Cards</label>
+    <div class="icon-container">
+        <i class="fa fa-cc-visa" style="color:navy;"></i>
+        <i class="fa fa-cc-amex" style="color:blue;"></i>
+        <i class="fa fa-cc-mastercard" style="color:red;"></i>
+        <i class="fa fa-cc-discover" style="color:orange;"></i>
+    </div>
+    <br><p>Credit Card Number</p> <input type="text" name= "ccnum" id="ccnum" pattern="\d{16}" value="1111222233334444" required> <br>
+    <p>Exp Month</p> <input type="text" name="EM" id="expmonth" value="01"  required> <br>
+    <p>Exp Year</p> <input type="text" name = "EY" id="expyear" onchange="YearCheckValid()" value="2023" required> <br>
+    <p>CVV</p> <input type="text" name = "cvv" id="cvv" pattern="\d{3}" value="352" required> <br>
+    <p1><input type="checkbox" checked="checked" id='check'> Shipping address same as billing </p1> <br>
+    <h> Your Order: </h>
+    <p hidden> <input name ="AMOUNT" id="AMOUNT" type="text"> </p> 
+    <p hidden> <input name = "price" id="price" type="text"></p>
+    <p hidden> <input name = "productNAME" id="productNAME" type="text"> </p>
+    <p hidden ><input name="NewStack" id="NewStack" type="text"> </p> 
+    <p hidden> <input name="RightStack" id="RightStack" type="text"> </p>
+    <p hidden> <input name = "INStack" id = "INStack" type = "number" ></p hidden>
+    <p id='item'> </p>
+    <button type="submit" class='btn' onclick="updatedstack()" > CheckOut </button><br>
+</form>
+<script type="text/javascript" src="../JS/generalfunctions.js"> </script>
+<script type="text/javascript" src="../JS/fetchForStack.js"></script>
+
+</div>
+</form>
+</body>
