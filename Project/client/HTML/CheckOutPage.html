@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-<title> cartry </title>
+<title> checkout page </title>
 <link rel="stylesheet" type="text/css" href="../CSS/main.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -99,12 +99,12 @@
     <p>CVV</p> <input type="text" name = "cvv" id="cvv" pattern="\d{3}" value="352" required> <br>
     <p1><input type="checkbox" checked="checked" id='check'> Shipping address same as billing </p1> <br>
     <h> Your Order: </h>
-    <p hidden> <input name ="AMOUNT" id="AMOUNT" type="text"> </p> 
-    <p hidden> <input name = "price" id="price" type="text"></p>
-    <p hidden> <input name = "productNAME" id="productNAME" type="text"> </p>
-    <p hidden ><input name="NewStack" id="NewStack" type="text"> </p> 
-    <p hidden> <input name="RightStack" id="RightStack" type="text"> </p>
-    <p hidden> <input name = "INStack" id = "INStack" type = "number" ></p hidden>
+    <p hidden>  //amount left for 1 order // <input name ="AMOUNT" id="AMOUNT" type="text"> </p>
+    <p hidden> // total price for the chisen product // <input name = "price" id="price" type="text"></p>
+    <p hidden> // thr name/s of the chosen product// <input name = "productNAME" id="productNAME" type="text"> </p>
+    <p hidden> //amount left for 2 orders or more  // <input name="NewStack" id="NewStack" type="text"> </p> 
+    <p hidden > //amount in for 2 orders or more // <input name="AmountIn" id="AmountIn" type="text"> </p> 
+    <p hidden > // amount in for 1 order // <input name = "INStack" id = "INStack" type = "number" ></p> 
     <p id='item'> </p>
     <button type="submit" class='btn' onclick="updatedstack()" > CheckOut </button><br>
 </form>
