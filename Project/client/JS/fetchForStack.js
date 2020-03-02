@@ -5,14 +5,14 @@ fetch('http://localhost:5000/MyStack')
     return response.json();
   })
   .then((OrderStack) => {
-    FirstArrayProduct = OrderStack[0]
-    SecondArrayProduct = OrderStack[1]
-    ThirdArrayProduct = OrderStack[2]
-    FourthArrayProduct = OrderStack[3]
-    FirstAmount = FirstArrayProduct[1]
-    SecondAmount = SecondArrayProduct[1]
-    ThirdAmount = ThirdArrayProduct[1]
-    FourthAmount = FourthArrayProduct[1]
+    let FirstArrayProduct = OrderStack[0]
+    let SecondArrayProduct = OrderStack[1]
+    let ThirdArrayProduct = OrderStack[2]
+    let FourthArrayProduct = OrderStack[3]
+    let FirstAmount = FirstArrayProduct[1]
+    let SecondAmount = SecondArrayProduct[1]
+    let ThirdAmount = ThirdArrayProduct[1]
+    let FourthAmount = FourthArrayProduct[1]
     document.getElementById(1).innerHTML = FirstArrayProduct[0];
     document.getElementById(5).innerHTML = SecondArrayProduct[0];
     document.getElementById(9).innerHTML = ThirdArrayProduct[0];

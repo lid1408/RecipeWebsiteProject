@@ -1,7 +1,5 @@
-//document.getElementById('res').call=fetchUserData();
 var listOfCakes = document.createElement('ul')
 listOfCakes.id = "myUL"
-//document.getElementById('fetchuserdatabtn').addEventListener('click', fetchUserData);
   const url = 'http://localhost:5000/cakes'
   fetch(url)
     .then(res => res.json())
@@ -13,7 +11,6 @@ listOfCakes.id = "myUL"
       const name = document.createElement('p')
       name.innerHTML=cake[1]
             
-
       const image = document.createElement("img")
       image.src = cake[4]
       image.width = 108;
@@ -39,9 +36,6 @@ cakeListItem.appendChild(space)
             listOfCakes.appendChild(cakeListItem)
             let creator = document.getElementById('cake')
             creator.appendChild(listOfCakes)
-            
-      // id = [ ` ${cakes[0]} ` ] 
-
     });
 
     });
