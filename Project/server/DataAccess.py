@@ -63,7 +63,7 @@ def stackdata():
     conn.commit()
 
 def RandomRecipePage():
-        conn = psycopg2.connect(user="lidor",
+    conn = psycopg2.connect(user="lidor",
                             password="lidor1408",
                             host="localhost",
                             port="5431",
@@ -75,7 +75,7 @@ def RandomRecipePage():
     RecipesList = []
     for Row in Rows:
         RecipesList = [Row] + RecipesList
-        print (RecipesList)
-
+    print (RecipesList[0])
+    return (RecipesList)
 
 

@@ -2,16 +2,23 @@
 from DataAccess import DataAccessForHomePage
 from DataAccess import Insertfunc
 from DataAccess import stackdata
+from DataAccess import RandomRecipePage
 from flask import Flask, jsonify, render_template, url_for, request, redirect
 import psycopg2 , random, json
 from flask_restful import Api, Resource, reqparse
 
 app = Flask(__name__)
+def RecipesGenrator():
+    RandomRecipe = RandomRecipePage()
+    @app.route("/RandomRecipeLink")
+    def RandomRecipeGenrator():
+        return jsonify(RandomRecipe)
 
-y = DataAccessForHomePage() 
+
+CakesData = DataAccessForHomePage() 
 @app.route("/cakes")
 def index():
-    return jsonify(y)
+    return jsonify(CakesData)
 
 @app.route("/process_cart", methods = ["POST", "GET"])
 def process_cart():
@@ -29,11 +36,11 @@ def process_cart():
 def user(usr):
     return f"<p> {usr} </p>"
 
-
+RecipesGenrator()
 @app.route("/MyStack")
 def stack():
-    data=stackdata()
-    return jsonify(data)
+    StackData=stackdata()
+    return jsonify(StackData)
 if __name__ == "__main__":
     app.run(debug=True)
 
@@ -52,4 +59,3 @@ if __name__ == "__main__":
 
 #insertDAL()
 #StackData()
-
