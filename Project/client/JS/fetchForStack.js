@@ -1,27 +1,18 @@
 
+let SerialNumberStackArray = 1
+let SerialNumberAmount = 4
 window.onload = function updatedstack() {
-fetch('http://localhost:5000/MyStack')
-  .then((response) => {
-    return response.json();
-  })
-  .then((OrderStack) => {
-    let FirstArrayProduct = OrderStack[0]
-    let SecondArrayProduct = OrderStack[1]
-    let ThirdArrayProduct = OrderStack[2]
-    let FourthArrayProduct = OrderStack[3]
-    let FirstAmount = FirstArrayProduct[1]
-    let SecondAmount = SecondArrayProduct[1]
-    let ThirdAmount = ThirdArrayProduct[1]
-    let FourthAmount = FourthArrayProduct[1]
-    document.getElementById(1).innerHTML = FirstArrayProduct[0];
-    document.getElementById(5).innerHTML = SecondArrayProduct[0];
-    document.getElementById(9).innerHTML = ThirdArrayProduct[0];
-    document.getElementById(13).innerHTML = FourthArrayProduct[0];
-    document.getElementById(4).innerHTML = FirstAmount;
-    document.getElementById(8).innerHTML = SecondAmount;
-    document.getElementById(12).innerHTML = ThirdAmount;
-    document.getElementById(16).innerHTML = FourthAmount;
-    
-  });
-}
 
+fetch('http://localhost:5000/MyStack')
+.then (res => res.json())
+.then(StackItems => {
+  StackItems.forEach((Item) => {
+  let Product = Item[0]
+  let Amount = Item[1] 
+  let Price = Item[2]
+  document.getElementById(SerialNumberStackArray).innerHTML = Product
+  SerialNumberStackArray = SerialNumberStackArray + 4
+  
+  document.getElementById(SerialNumberAmount).innerHTML = Amount;
+  SerialNumberAmount =  SerialNumberAmount + 4
+  })})}

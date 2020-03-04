@@ -22,13 +22,12 @@ listOfCakes.id = "myUL"
       link.innerHTML = 'Recipe Link'
 
       const space = document.createElement('br')
-      const space1 = document.createElement('br')
       const description = document.createElement('p')
       description.innerHTML = cake[5]
 
 cakeListItem.appendChild(name)
 cakeListItem.appendChild(link)
-cakeListItem.appendChild(space1)
+cakeListItem.appendChild(space)
 cakeListItem.appendChild(image)
 cakeListItem.appendChild(description)
 cakeListItem.appendChild(space)
@@ -36,8 +35,8 @@ cakeListItem.appendChild(space)
             listOfCakes.appendChild(cakeListItem)
             let creator = document.getElementById('cake')
             creator.appendChild(listOfCakes)
+            
     });
-
     });
 
 

@@ -22,11 +22,10 @@ def index():
 @app.route("/process_cart", methods = ["POST", "GET"])
 def process_cart():
     if request.method == "POST":
-        user =(str(request.form["id"]), str(request.form["fullname"]), str(request.form["Email"]), str(request.form["Country"]), str(request.form["City"]), str(request.form["Street"]), str(request.form["ccnum"]), str(request.form["EM"]), str(request.form["EY"]) ,str(request.form["cvv"]), str(request.form["AMOUNT"]), str(request.form["price"]) ,str(request.form["productNAME"]))
-        amountToUpdate = request.form["NewStack"]
-        InStackForMany = request.form["AmountIn"]
-        InStack = request.form["INStack"]
-        Insertfunc(user,amountToUpdate,InStackForMany,InStack)
+        user =(str(request.form["id"]), str(request.form["fullname"]), str(request.form["Email"]), str(request.form["Country"]), str(request.form["City"]), str(request.form["Street"]), str(request.form["ccnum"]), str(request.form["EM"]), str(request.form["EY"]) ,str(request.form["cvv"]), str(request.form["ChosenAmount/s"]), str(request.form["FullPrice"]) ,str(request.form["ChosenProductName"]))
+        NewStack = request.form["AmountLeftAfterPurchase"]
+        CurrentStack = request.form["AmountInStack"]
+        Insertfunc(user,NewStack,CurrentStack)
         return redirect("http://127.0.0.1:5500/client/HTML/OrderConfirmationPage.html" ,code=302)
     else:
         return "ERROR"

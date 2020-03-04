@@ -1,83 +1,74 @@
-let updatedAmount = []
-let updatedPrice = 0 
+//------ defining variables ---------//
+let TotalPrice = 0
+let UpdatedCart = ''
+let ChosenAmountS = ''
 let UpdatedStackLeft = ''
-let totalPrice = 0
-let StackRight = ''
-
+let AmountInCurrentStack_ = ''
+let AmountLeftAfterPurchase_ = ''
+let ProductSerialNumber
+//---------------------------------//
 const SearchFunc = () => {
-    var input, filter, ul, li, a, i, txtValue ,b ;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
-    li = ul.getElementsByTagName("li");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("p")[0];
-        txtValue = a.textContent || a.innerText;
+    let i, txtValue;
+    let SearchInput = document.getElementById("SearchInput");
+    let filter = SearchInput.value.toUpperCase();
+    let ListOfRecipes = document.getElementById("myUL");
+    let RecipesListItem = document.getElementsByTagName("li");
+    for (i = 0; i < RecipesListItem.length; i++) {
+        RecipesForComparetion = RecipesListItem[i].getElementsByTagName("p")[0];
+        txtValue = RecipesForComparetion.textContent || RecipesForComparetion.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
+            RecipesListItem[i].style.display = "";
         } else {
-            li[i].style.display = "none";
-        }
-    }
-}
+            RecipesListItem[i].style.display = "none";
+}}}
 
 const Delivary = () => {
-    flag = true
-    let Remember = document.getElementById("check")
-    if (Remember.checked) {
-        alert("Great, your order will be deliver to you in the chosen time")
+    let CheckBoxChecker = document.getElementById("check")
+    if (CheckBoxChecker.checked) {
+        alert("Great, your order will be deliver to you at your chosen time")
     }
     else {
         alert("please check a checked box")
-    }
-    
-}
-let updatedCart = ''
-const GeneralFuncForCartPage = (x) => {
-    let product = String(document.getElementById(x).innerHTML)    
-    let price = Number(document.getElementById(x+1).innerHTML)
-    let amount = Number(document.getElementById(x+2).value)
-    let InStack = Number(document.getElementById(x+3).innerHTML)
-    console.log(InStack);
-    
-    
-    updatedCart = product + "," + updatedCart
-    totalPrice = (parseInt(amount) * parseInt(price)) + totalPrice
-    
-    if (InStack < amount) {
+    }}
+
+const GeneralFuncForCartPage = (ProductSerialNumber) => {
+    let product = String(document.getElementById(ProductSerialNumber).innerHTML)    
+    let price = Number(document.getElementById(ProductSerialNumber+1).innerHTML)
+    let amount = Number(document.getElementById(ProductSerialNumber+2).value)
+    let AmountInCurrentStack = Number(document.getElementById(ProductSerialNumber+3).innerHTML)
+    AmountInCurrentStack_ = AmountInCurrentStack + ',' + AmountInCurrentStack_
+    ChosenAmountS = amount + ',' + ChosenAmountS
+    //----not really needed, essential for a real websie ----//
+    UpdatedCart = product + "," + UpdatedCart
+    TotalPrice = (parseInt(amount) * parseInt(price)) + TotalPrice
+    //-------------------------------------------------------//
+    AmountLeftAfterPurchase = (parseInt(AmountInCurrentStack)-parseInt(amount))
+    AmountLeftAfterPurchase_ = AmountLeftAfterPurchase + ',' + AmountLeftAfterPurchase_
+    // ERROR CHECKER //
+    if (AmountInCurrentStack < amount) {
         document.getElementById(x+2).value = ""
         alert( " The Amount Wanted Is Not Available ")
     }
-    if (InStack >= amount) {
-        let StackLeft = parseInt( parseInt(InStack) - parseInt(amount) )
-        document.getElementById("AMOUNT").value = StackLeft
-        document.getElementById('price').value = totalPrice; 
-        document.getElementById("productNAME").value = updatedCart;
-        document.getElementById("MyCart").innerHTML = updatedCart;
-        document.getElementById("item").innerHTML = updatedCart;
-        UpdatedStackLeft = StackLeft + ',' + UpdatedStackLeft
-        let LenStack = UpdatedStackLeft.length
-        StackRight = InStack + ',' + StackRight
-        if (LenStack<=4) {
-        document.getElementById("NewStack").value = StackLeft;
-        document.getElementById("INStack").value = InStack;
-        }
-        if (LenStack>4) { 
-        document.getElementById("NewStack").value = UpdatedStackLeft;
-        //document.getElementById("INStack").value = InStack;
-        document.getElementById("AmountIn").value = StackRight;
-        console.log(UpdatedStackLeft)
-        //console.log(InStack)
-        console.log(StackRight)
-        }
-    }
-}
+    // ----------------- //
+    if (AmountInCurrentStack >= amount) {
+        // FOR CLIENTS' ACCESSIBILITY //
+        document.getElementById("AmountLeftAfterPurchase").value = AmountLeftAfterPurchase
+        document.getElementById('FullPrice').value = TotalPrice; 
+        document.getElementById("ChosenProductName").value = UpdatedCart;
+        document.getElementById("MyCart").innerHTML = UpdatedCart;
+        // ------------------------ //
+        // FOR SERVER //
+        document.getElementById("ChosenAmount/s").innerHTML = ChosenAmountS;
+        document.getElementById("AmountLeftAfterPurchase").value = AmountLeftAfterPurchase_;
+        document.getElementById("AmountInStack").value = AmountInCurrentStack_;
+        // -------- // 
+    }}
 
 const ToggleCheckoutForm = () => {
     document.getElementById("panel").style.display = "block"; 
 }
 
-const ID = () => {
+const IDCreator = () => {
     var id = ( '_' + Math.random().toString(36).substr(2, 9));
     document.getElementById('id').value = id;
     return id 
@@ -85,8 +76,7 @@ const ID = () => {
 
 const operator = () => {
     ToggleCheckoutForm()
-    ID()
-    
+    IDCreator()   
 }
 
 const YearCheckValid = () =>{
@@ -94,5 +84,4 @@ const YearCheckValid = () =>{
     let typedYear = document.getElementById("expyear").value
     if (thisYear > typedYear) {
         document.getElementById("expyear").value = ""
-    }
-}
+    }}
